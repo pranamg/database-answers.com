@@ -18,4 +18,11 @@ This folder contains two helper scripts to work with `*_model.gif` images used i
 Notes:
 - The extractor intentionally targets files in `docs/data_models/*/images/` only.
 - The CSV lists `*_model.gif` from the whole repo; `category` is filled only when the path matches `docs/data_models/<category>/images/...`.
+
+Additional tools:
+- `scripts/batch_commit_images.sh` commits extracted `*_model.gif` files in safe-sized batches. Run with `--dry-run` first to verify behavior.
+- `scripts/setup_git_lfs.sh` configures Git LFS to track `*.gif` and commits `.gitattributes`. Recommended before committing many GIFs to avoid repo bloat.
+
 - By default this README and the scripts are safe to commit without adding the full set of extracted images.
+
+**Tip:** Use `scripts/batch_commit_images.sh -n 200 -d images -b workup --push-after-all` to commit in 200-file batches and push once at the end.
