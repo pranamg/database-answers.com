@@ -50,6 +50,38 @@ When submitting a pull request:
 
 Distributed under the MIT License. See <a href="/LICENSE">LICENSE</a> for more information.
 
+## Pull Request Overview
+
+This PR introduces two helper scripts designed to facilitate the extraction and listing of image files related to our data models:
+
+- **`scripts/extract_models.sh`**: This script copies files matching the pattern `docs/data_models/*/images/*_model.gif` into the `images/` directory, prefixing each filename with its corresponding category for better organization.
+  
+- **`scripts/list_models_csv.sh`**: This script scans the repository for all `*_model.gif` files and generates a CSV file (`images/models_list.csv`) that lists these images, providing a quick reference for available models.
+
+### Exclusion of Images
+
+To prevent repository bloat, the actual image files have not been included in this PR. Instead, they can be added in a follow-up PR using Git LFS (Large File Storage) to manage large files efficiently. This approach ensures that our repository remains lightweight and manageable.
+
+### How to Accept Changes
+
+1. **Review the Scripts**: Check the changes made in the scripts to ensure they meet the project requirements.
+2. **Run the Scripts**: You can run the scripts locally to verify their functionality:
+   ```bash
+   chmod +x scripts/extract_models.sh scripts/list_models_csv.sh
+   ./scripts/extract_models.sh
+   ./scripts/list_models_csv.sh
+   ```
+3. **Batch Commit Images**: If you need to add the images later, you can use the provided `scripts/batch_commit_images.sh` script to commit them in batches, ensuring that Git LFS is set up correctly.
+
+### Running the Combined Script
+
+To run the combined commit and PR script, use the following command:
+```bash
+chmod +x scripts/run_commit_and_pr.sh
+./scripts/run_commit_and_pr.sh --branch workup --batch-size 200 --dir images
+```
+You can also use the `--auto-approve` flag to skip prompts during execution.
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
